@@ -98,9 +98,66 @@ const userController = {
                 }
                 res.json({message:'Successfully deleted user and all associated thoughts'})
                 }
-            }
- 
+            } 
         )
+    },
+
+    // add a friend to a user's friends list
+    addFriend({params},res){
+        // check to make sure the friend id is valid
+       User.findOne(
+        {_id:params.friendId}
+       )
+       .then(friend => {
+            // if friend's id is not a valid id number, ask user to check it again
+            if(!friend){
+                res.json({message:"Please double-check your friend's ID."})
+            }
+            // if friend's id is valid, update the user's friends array with the friend's id number
+            else{
+                User.findOneAndUpdate(
+                    {_id:params.userId},
+                    {$addToSet: {friends:params.friendId}},
+                    {new:true, runValidators:true}
+                )
+                .then(updatedUser => {
+                    if(!updatedUser){
+                        res.status(404).json({message:'No user found with that id.'})
+                    }
+                    res.json(updatedUser)
+                })
+                .catch(err => res.status(400).json(err));
+            }
+       })     
+    },
+
+    // delete a friend from a user's friends list
+    deleteFriend({params},res){
+        // check to make sure the friend id is valid
+       User.findOne(
+        {_id:params.friendId}
+       )
+       .then(friend => {
+            // if friend's id is not a valid id number, ask user to check it again
+            if(!friend){
+                res.json({message:"Please double-check your friend's ID."})
+            }
+            // if friend's id is valid, update the user's friends array to remove  the friend's id number
+            else{
+                User.findOneAndUpdate(
+                    {_id:params.userId},
+                    {$pull: {friends:params.friendId}},
+                    {new:true, runValidators:true}
+                )
+                .then(updatedUser => {
+                    if(!updatedUser){
+                        res.status(404).json({message:'No user found with that id.'})
+                    }
+                    res.json(updatedUser)
+                })
+                .catch(err => res.status(400).json(err));
+            }
+       })     
     }
 }
 
