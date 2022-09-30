@@ -83,23 +83,14 @@ const userController = {
                 return;
             }
             else{
-                for(var i = 0; i<deletedUser.thoughts.length; i++){
-                    Thought.findOneAndDelete(
-                        {_id:deletedUser.thoughts[i]._id},
-                        function(err,thought){
-                            if(err){
-                                console.log(err);                               
-                            }
-                            else{
-                                console.log(`deleted thought ${thought._id}`);
-                            }                            
-                        }
-                    );
-                }
-                res.json({message:'Successfully deleted user and all associated thoughts'})
-                }
-            } 
-        )
+                Thought.deleteMany(
+                    {username:deletedUser.username}
+                )
+                .then(res.json({message:'Deleted user and all associated thoughts'})
+                )
+                .catch(err => res.json(err));              
+            }
+        })
     },
 
     // add a friend to a user's friends list

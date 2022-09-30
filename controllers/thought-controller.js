@@ -99,18 +99,6 @@ const thoughtController = {
         .catch(err => res.json(err));        
     },
 
-    // delete all thoughts
-    deleteAllThoughts(req,res){
-        Thought.deleteMany({})
-            .then(deletedThoughts => {
-                if(!deletedThoughts){
-                    res.json({message:'No thoughts were found.'})
-                }
-                res.json({message:'All thoughts successfully deleted.'})
-            })
-            .catch(err => res.json(err));               
-    },
-
     // create a reaction to a post
     addReaction({params,body},res){
         Thought.findOneAndUpdate(
@@ -131,6 +119,7 @@ const thoughtController = {
         .catch(err => res.json(err));           
     },
 
+    // delete a reaction to a post
     deleteReaction({params},res){
         Thought.findOneAndUpdate(
             {_id:params.thoughtId},
