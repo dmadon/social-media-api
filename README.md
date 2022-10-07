@@ -36,3 +36,6 @@ A backend for a social media app in which a user can post thoughts and react to 
   * If you have questions about this project, you can email me at deanna.madon@gmail.com
   
   ## Preview
+  
+  ![image](https://user-images.githubusercontent.com/99852346/194462523-31726fc7-39a0-48b0-9ada-54eee5452c05.png)
+
