@@ -40,5 +40,8 @@ A backend for a social media app in which a user can post thoughts and react to 
   ![image](https://user-images.githubusercontent.com/99852346/194462523-31726fc7-39a0-48b0-9ada-54eee5452c05.png)
   
   ![image](https://user-images.githubusercontent.com/99852346/194462563-eab7c069-984f-4549-a791-a4d6cc490f69.png)
+  
+  ![image](https://user-images.githubusercontent.com/99852346/194462627-557567fe-68cb-4eb4-b0b7-9c73787c18dd.png)
+
 
 
